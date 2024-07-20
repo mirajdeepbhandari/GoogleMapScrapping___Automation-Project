@@ -189,6 +189,6 @@ def main():
 
     p=get_place_from_file()
 
-    filename = f'outputs/scrape_{p}_{k}_{timestamp}.xlsx'
+    filename = f'output/scrape_{p}_{k}_{timestamp}.xlsx'
    
     df.to_excel(filename, index=False)
