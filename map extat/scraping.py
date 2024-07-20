@@ -10,6 +10,7 @@ import pandas as pd
 from datetime import datetime
 
 
+
 def main():
     # Path to your chromedriver
     chromedriver_path = "C:/Users/miraj/OneDrive/Desktop/projectMapsData-main/chromedriver.exe"
@@ -192,3 +193,7 @@ def main():
     filename = f'output/scrape_{p}_{k}_{timestamp}.xlsx'
    
     df.to_excel(filename, index=False)
+
+    return df
+   
+    driver.quit() 

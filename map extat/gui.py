@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
 from scraping import main
+from mail import email_process
 
 
 def handle_inputs():
@@ -20,8 +21,12 @@ def handle_inputs():
         file.write(f"{place_name}\n{keyword}")
 
     messagebox.showinfo('Success', f'Scraping data for {place_name} with keyword {keyword}')
-    main()
-    messagebox.showinfo('Success', f'Scraping is Finished. Check the output folder.')
+    dframe=main()
+    messagebox.showinfo('Success', f'Scraping is Finished. Check the output folder.  for emails also it takes 15min - 20min')
+
+    email_process(dframe)
+
+    messagebox.showinfo('Success', f'Scraping with Emails is Finished. Check the output_with_emails folder.')
 
 
 
