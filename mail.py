@@ -1,13 +1,4 @@
-
-import pandas as  pd
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-import re
-import time
-from selenium.common.exceptions import WebDriverException
-from datetime import datetime
-
+from imports import *
 
 def email_process(df):
 
@@ -17,14 +8,10 @@ def email_process(df):
 
     filter = [ i for i in df['website'].dropna().astype(str) if not any(platform in i for platform in platforms)]
 
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run in headless mode (no GUI)
-
     # Replace with the path to your ChromeDriver executable
     service = Service('C:/Users/miraj/OneDrive/Desktop/projectMapsData-main/chromedriver.exe')
-
     # Initialize WebDriver
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(service=service)
 
     all_emails = []
 
@@ -46,7 +33,7 @@ def email_process(df):
                     if not emails:
                         all_emails.append("N/A")
                     else:
-                        femails=[i for i in emails if "sentry" not in i and "wixpress" not in i ]
+                        femails=[i for i in emails if "sentry" not in i and "wixpress" not in i and "jpg" not in i ]
                         all_emails.append(femails)
 
                 

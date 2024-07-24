@@ -1,14 +1,5 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import ElementClickInterceptedException, NoSuchElementException
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
-import pandas as pd
-from datetime import datetime
-
+from imports import *
+from getcoord import get_coordinates
 
 
 def main():
@@ -172,6 +163,8 @@ def main():
 
     findshopss()
 
+    driver.quit() 
+
     dic = {
         'shop': shop,
         'rating': rating,
@@ -183,6 +176,15 @@ def main():
     }
 
     df = pd.DataFrame(dic)
+
+    df.drop_duplicates(inplace=True)
+
+    cord=(df['shop']+df['address']).tolist()
+
+    lat, lon = get_coordinates(cord)
+ 
+    df['latitude'] = lat
+    df['longitude'] = lon
 
     timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
@@ -196,4 +198,4 @@ def main():
 
     return df
    
-    driver.quit() 
+    

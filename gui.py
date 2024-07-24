@@ -1,9 +1,7 @@
-from tkinter import *
-from tkinter import messagebox
-from PIL import ImageTk, Image
+from imports import *
+from threading import Thread
 from scraping import main
 from mail import email_process
-
 
 def handle_inputs():
     place_name = place_input.get()
@@ -20,15 +18,25 @@ def handle_inputs():
     with open('place_and_keyword.txt', 'w') as file:
         file.write(f"{place_name}\n{keyword}")
 
-    messagebox.showinfo('Success', f'Scraping data for {place_name} with keyword {keyword}')
-    dframe=main()
-    messagebox.showinfo('Success', f'Scraping is Finished. Check the output folder.  for emails also it takes 15min - 20min')
+    messagebox.showinfo('Success', f'Scraping data for place: {place_name} with keyword: {keyword}')
+    
+    # Run the scraping and email processing in a separate thread
+    scraping_thread = Thread(target=scrape_and_process)
+    scraping_thread.start()
 
+
+
+# def open_review_window():
+
+
+
+
+def scrape_and_process():
+    dframe = main()
+    messagebox.showinfo('Success', f'Scraping is Finished. Check the output folder. It takes 15-20 minutes for emails.')
+    
     email_process(dframe)
-
     messagebox.showinfo('Success', f'Scraping with Emails is Finished. Check the output_with_emails folder.')
-
-
 
 root = Tk()
 
@@ -67,7 +75,14 @@ keyword_input = Entry(root, width=70)
 keyword_input.pack(ipady=10, pady=(5,15))
 
 submit_btn = Button(root, text='Scrape', bg='#2c3e50', fg='white', width=20, height=2, command=handle_inputs)
-submit_btn.pack(pady=(30,70))
+submit_btn.pack(pady=(30,20))
 submit_btn.config(font=('verdana',10))
 
+
+submit_btn = Button(root, text='Scrape Reviews', bg='#219C90', fg='white', width=20, height=2)
+submit_btn.config(font=('verdana', 10))
+submit_btn.pack(side='left', padx=(5, 70))
+
 root.mainloop()
+
+
