@@ -31,7 +31,7 @@ def scrape_and_process():
 
 def open_main_window():
     root.destroy()  # Close the current window
-    import testgui as mainwindow
+    import main_gui as mainwindow
     mainwindow.run_main_window()
 
 def run_review_window():

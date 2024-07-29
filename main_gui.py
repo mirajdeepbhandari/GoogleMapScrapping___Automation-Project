@@ -23,7 +23,7 @@ def handle_inputs():
     messagebox.showinfo('Success', f'Scraping data for place: {place_name} with keyword: {keyword}')
     
     # Run the scraping and email processing in a separate thread
-    scraping_thread = Thread(target=scrape_and_process)
+    scraping_thread = Thread(target=scrape_and_process) 
     scraping_thread.start()
 
 def scrape_and_process():
@@ -35,8 +35,8 @@ def scrape_and_process():
 
 def open_review_window():
     root.destroy()  # Close the current window
-    import subwindows.testreview as testreview
-    testreview.run_review_window()
+    import subwindows.review_gui as reviewgui
+    reviewgui.run_review_window()
 
 def run_main_window():
     global root, place_input, keyword_input
