@@ -9,7 +9,7 @@ def email_process(df):
     filter = [ i for i in df['website'].dropna().astype(str) if not any(platform in i for platform in platforms)]
 
     # Replace with the path to your ChromeDriver executable
-    service = Service('C:/Users/miraj/OneDrive/Desktop/projectMapsData-main/chromedriver.exe')
+    service = Service('chromedriver.exe')
     # Initialize WebDriver
     driver = webdriver.Chrome(service=service)
 

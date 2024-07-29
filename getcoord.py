@@ -2,7 +2,7 @@ from imports import *
 
 def get_coordinates(li):
         
-        chromedriver_path = "C:/Users/miraj/OneDrive/Desktop/projectMapsData-main/chromedriver.exe"
+        chromedriver_path = "chromedriver.exe"
         service = Service(chromedriver_path)
         driver = webdriver.Chrome(service=service)
 

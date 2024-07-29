@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r'C:\Users\miraj\OneDrive\Desktop\Map_Extractor')
+import os
 from imports import *
 from threading import Thread
 from scraping import main
@@ -86,4 +86,6 @@ def run_main_window():
     root.mainloop()
 
 if __name__ == "__main__":
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    sys.path.append(current_dir)
     run_main_window()
